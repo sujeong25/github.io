@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    ------------->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scable=no">
+<!--    모바일은 위의 구문 반드시 들어감!!-->
+    <meta ma>
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        ul{list-style: none;}
+        a{text-decoration: none;}
+        body, html{width: 100%; }
+        button, label, input{outline: 0; border: 0; background: transparent; user-select: none;}
+        .hd{position: fixed; width: 100vw; height: 60px; background: skyblue;}
+        .la{width: 60px; height: 60px; position: absolute; right: 0; top: 0;}
+        .line_box{position: relative; }
+        .ln1, .ln2, .ln3{position: absolute; width: 40px; border: 3px solid black; }
+        .ln1{top:18px;}
+        .ln2{top:28px;}
+        .ln3{top:38px;}
+        #gnb{position: fixed; width: 250px; height: 100vh;position: absolute; z-index: 980; background: gray; left: -250px; transition: 0.6s;}
+        #ck1:checked ~#gnb{left: 0; transition: 0.5s;}
+        #ck1:checked ~.hd .line_box span.ln1{transform: rotate(45deg); top:28px;}
+        #ck1:checked ~.hd .line_box span.ln2{opacity: 0;}
+        #ck1:checked ~.hd .line_box span.ln3{transform: rotate(-45deg); top:28px;}
+        #ck1:chkcked ~.hd .la_box li
+        #gnb .la_box {margin-top: 10px;}
+        #gnb .la_box li{float: right;}
+        #gnb .la_box li span{border: 3px solid black;}
+        .menu{margin-top: 80px;}
+        .menu li{text-align:center; height: 60px; font-size:24px; border-bottom: 0.5px solid black; line-height: 60px}
+        .menu li a{color:black; font-weight: bold;}
+        #ck2:checked ~ gnb{left: 0; transition: 0.6s;}
+        .main{clear: both; min-height: 100vh; width: 100vw; }
+        .bg_box h1{color: white; position: absolute; top: 400px; text-align: left; font-size:40px; }
+        .search{width: 250px; top: -200px; background: gray;position: absolute; z-index: 990;}
+        #ck2:checked ~ .search{top:200px;}
+        .search .search_form{width: 230px; height: 50px; background: white; margin: 0 auto;}
+        .search img{position: absolute; top: 20px;left: 190px;}
+        .page{clear: both; min-height: 100vh; width: 100vw;}
+        .page:after { content:""; display:table; } 
+        .page .page_tit {color:white; text-align: center; height: 200px; line-height: 200px;}
+        #page1{background-image: url(./img/page1.jpg);}
+        #page2{background-image: url(./img/page2.jpg);}
+        #page3{background-image: url(./img/page2.jpg);}
+    </style>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#gnb .menu li a").click(function(){
+            var tar= parseInt($(this).attr("data-index"));
+            var ofs= $("#page"+tar).offset();
+            var sc= ofs.top;
+            $("body, html").animate({scrollTop:sc}, 740);
+            $("#ck1").prop("checked", false);
+        });
+    });
+    </script>
+</head>
+<body>
+   <input type="checkbox" name="ck" id="ck1">
+    <input type="checkbox" name="ck" id="ck2">
+    <input type="checkbox" name="ck" id="ck3">
+    <header class="hd">
+        <a href="index.html" class="logo"><img src="" alt=""></a>
+        <label for="ck1" class="la">
+            <span class="line_box">
+                <span class="ln1"></span>
+                <span class="ln2"></span>
+                <span class="ln3"></span>
+            </span>
+        </label>
+    </header>
+    <nav id="gnb">
+         <ul class="la_box">
+            <li>
+            <a href=".search"><img src="./img/search.png" alt=""></a>
+             <a href=""><img src="./img/loginicon.png" alt=""></a>
+            <label for="ck2">
+            <a href=""><img src="./img/close.png" alt=""></a>
+            </label>
+           </li>
+        </ul>
+        <ul class="menu">
+            <li><a href="javascript:;" data-index="1">About</a></li>
+            <li><a href="javascript:;" data-index="2">Trip news</a></li>
+            <li><a href="javascript:;" data-index="3">Tour</a></li>
+            <li><a href="javascript:;" data-index="4">BLAH BLAH</a></li>
+        </ul>
+        <!--            data-index 이름은 자유-->
+    </nav>
+    <div class="search">
+       <label for="ck2" class="close_btn">닫기</label>
+        <form action="" class="search_form">
+        </form>
+        <img src="./img/search.png" alt="">
+    </div>
+    <main class="main">
+        <figure class="vs">
+            <ul class="img_box">
+                <li>
+                    <div class="bg_box">
+                        <h1>검증된 가이드가<br> 시작부터 끝까지<br>함께 합니다</h1>
+                        <a href=""><img src="./img/slide1.jpg" alt=""></a>
+                    </div>
+                </li>
+                <li><a href=""><img src="" alt=""></a></li>
+                <li><a href=""><img src="" alt=""></a></li>
+            </ul>
+        </figure>
+       <main class="page" id="page1">
+           <h2 class="page_tit">Spain trip</h2>
+       </main>
+       <main class="page" id="page2">
+           <h2 class="page_tit">Tour information</h2>
+       </main>
+       <main class="page" id="page3">
+           <h2 class="page_tit"></h2>
+       </main>
+       <main class="page" id="page4">
+           <h2 class="page_tit"></h2>
+       </main>
+    </main>
+</body>
+</html>
